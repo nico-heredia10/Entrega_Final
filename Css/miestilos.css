@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Slab:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto Slab", system-ui;
+    background-image: url(../Img/Viñedo.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-size: 200vh;
+    background-attachment: fixed;
+}
+
+nav{
+    width: 100%;
+    height: auto;
+
+}
+
+nav div{
+    margin-top: 10px;
+}
+
+nav div ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+
+nav div ul li{
+
+    list-style: none;
+    width: 130px;
+    height: 20px;
+    line-height: 15px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    left: -120px;
+    transition: all 3s linear;
+    border: 1px solid black;
+}
+
+nav div ul li:focus{
+    left: -20px;
+}
+
+nav div ul li a{
+
+    line-height: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: violet;
+    
+
+}
