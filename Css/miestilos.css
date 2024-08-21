@@ -131,7 +131,7 @@ nav #divBodegas .divProducto .divImg{
     align-items: center;
 }
 
-@keyframes paraImg {
+@keyframes paraBoton {
     
     0%{
         transform: scale(1);
@@ -142,12 +142,6 @@ nav #divBodegas .divProducto .divImg{
     }
 }
 
-
-nav #divBodegas .divProducto .divImg:hover{
-
-    animation: paraImg 1s linear 0.1s;
-    
-}
 
 nav #divBodegas .divProducto .divImg img{
 
@@ -175,3 +169,27 @@ nav #divBodegas .divProducto .divImg p{
     background-color: rgba(0, 0, 0, 1);
     color: violet;
 }
+
+nav #divBodegas .divProducto .divImg .agregar{
+
+    background-color: black;
+    color: violet;
+    font-size: 10px;
+    font-weight: 900;
+    border: 3px solid black;
+    position: relative;
+    left: 50px;
+    bottom: 80px;
+}
+
+nav #divBodegas .divProducto .divImg .agregar:hover{
+
+    cursor: pointer;
+    
+}
+
+nav #divBodegas .divProducto .divImg .agregar:active{
+
+    animation: paraBoton 0.5s linear 0.1s;
+}
+

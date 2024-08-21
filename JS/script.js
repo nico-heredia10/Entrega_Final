@@ -16,41 +16,83 @@ const productos = async ()=>{
 
 const creadorDeDiv = (nombreBodega, arrayBodega)=>{
 
+    nombreBodega = nombreBodega.replace(/\s+/g,'');
     console.log(nombreBodega);
     console.log(arrayBodega);
     
     const divDeBodegas = document.getElementById('divBodegas');
-    
 
-    let existe = document.querySelector('.divProducto'); 
-    console.log(existe);
+    let divAOcultar = document.querySelector('.divProducto');
+    let existe = '';
 
-    if(nombreBodega == existe){
+    if(divAOcultar){
+        
+        existe = divAOcultar.classList.item(1);
+        // console.log(existe)
+        if(existe == nombreBodega){
 
-        divDeBodegas.removeChild(existe);
+            divDeBodegas.removeChild(divAOcultar);
 
-    }else{
+        }else{
 
-        let divProducto = document.createElement('div');
-        divProducto.setAttribute('class', 'divProducto');
-    
-        arrayBodega.forEach(bode =>{{
-    
-            let div = document.createElement('div');
-            div.setAttribute('class', 'divImg');
-    
-            div.innerHTML = `<img src='${bode.img}' alt='${bode.nombre}'>
-                        <h2>${bode.nombre}</h2>
-                        <p>${bode.varietal}</p>`
-    
-            divProducto.appendChild(div);
-    
-        }})
-    
-        divDeBodegas.appendChild(divProducto);
+            if(divAOcultar){
 
+                divDeBodegas.removeChild(divAOcultar);
+            }
+            
+            let divProducto = document.createElement('div');
+
+            divProducto.setAttribute('class', `divProducto ${nombreBodega}`);
+            console.log(divProducto);
+            arrayBodega.forEach(bode =>{{
+        
+                let div = document.createElement('div');
+                div.setAttribute('class', 'divImg');
+        
+                div.innerHTML = `<img src='${bode.img}' alt='${bode.nombre}'>
+                            <h2>${bode.nombre}</h2>
+                            <p>${bode.varietal}</p>
+                            <botton class= 'agregar'>Agregar</botton>`
+        
+                divProducto.appendChild(div);
+        
+            }})
+        
+            divDeBodegas.appendChild(divProducto);
+            
+        }
+
+    }else if(nombreBodega != existe){
+
+        if(divAOcultar){
+
+            divDeBodegas.removeChild(divAOcultar);
+        }
+        
+
+            let divProducto = document.createElement('div');
+
+            divProducto.setAttribute('class', `divProducto ${nombreBodega}`);
+            console.log(divProducto);
+            arrayBodega.forEach(bode =>{{
+        
+                let div = document.createElement('div');
+                div.setAttribute('class', 'divImg');
+        
+                div.innerHTML = `<img src='${bode.img}' alt='${bode.nombre}'>
+                            <h2>${bode.nombre}</h2>
+                            <p>${bode.varietal}</p>
+                            <botton class= 'agregar'>Agregar</botton>`
+        
+                divProducto.appendChild(div);
+        
+            }})
+        
+            divDeBodegas.appendChild(divProducto);
+
+            
     }
-
+            
     
 }
 
@@ -99,30 +141,32 @@ function mostradorDeBodegas (){
     bodegas.addEventListener('click', (e)=>{
 
         e.preventDefault();
-        console.log(e.target) 
+        // console.log(e.target) 
 
         let existeDiv = document.querySelector('.div1');
+        let divDeImg = document.querySelector('.divProducto');
         // console.log(existeDiv);
         
         if(existeDiv){
 
             divDeBodegas.removeChild(existeDiv);
+            divDeBodegas.removeChild(divDeImg);
             
         }else{
             let div1 = document.createElement('div');
             div1.setAttribute('class', 'div1');
             // console.log(div1);
  
-            div1.innerHTML = `<p class='vinos'>Trapiche</p>
-                            <p class='vinos'>Catena Zapata</p>
-                            <p class='vinos'>Zuccari</p>
-                            <p class='vinos'>Salentein</p>`
+            div1.innerHTML = `<p class='vinos '>Trapiche</p>
+                            <p class='vinos '>Catena Zapata</p>
+                            <p class='vinos '>Zuccari</p>
+                            <p class='vinos '>Salentein</p>`
  
          
             divDeBodegas.appendChild(div1);
             
             const vinos = document.getElementsByClassName('vinos');
-            console.log(vinos)
+            // console.log(vinos)
             const arrayVinos = Array.from(vinos)
             // console.log(arrayVinos)
 
