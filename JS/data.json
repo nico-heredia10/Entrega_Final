@@ -96,7 +96,7 @@
 
         {
             "nombre":"DV Catena",
-            "varietal": "Cabernet-Malbec",
+            "varietal": "Cabernet",
             "precio": 11500,
             "stock": 30,
             "id": 11,

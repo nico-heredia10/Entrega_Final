@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Slab:wght@100..900&display=swap');
 
+
+
 *{
     margin: 0;
     padding: 0;
@@ -15,9 +17,10 @@ body{
     background-image: url(../Img/Viñedo.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-size: 200vh;
     background-attachment: fixed;
+    overflow: auto;
 }
 
 nav{
@@ -44,14 +47,14 @@ nav div ul li{
     height: 20px;
     line-height: 15px;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 1);
     position: relative;
     left: -120px;
     transition: all 3s linear;
     border: 1px solid black;
 }
 
-nav div ul li:focus{
+nav div ul li:hover{
     left: -20px;
 }
 
@@ -62,6 +65,113 @@ nav div ul li a{
     font-size: 15px;
     font-weight: 500;
     color: violet;
-    
 
+}
+
+nav #divBodegas{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+nav #divBodegas .div1{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 5px;
+    
+    text-align: center;
+
+}
+
+nav #divBodegas .div1 p{
+
+    width: 130px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 1);
+    color: violet;
+}
+
+nav #divBodegas .div1 p:hover{
+
+    cursor: pointer;
+}
+
+nav #divBodegas .divProducto{
+
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 3px;
+}
+
+nav #divBodegas .divProducto .divImg{
+
+    width: 150px;
+    height: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes paraImg {
+    
+    0%{
+        transform: scale(1);
+    }
+
+    100%{
+        transform: scale(1.1);
+    }
+}
+
+
+nav #divBodegas .divProducto .divImg:hover{
+
+    animation: paraImg 1s linear 0.1s;
+    
+}
+
+nav #divBodegas .divProducto .divImg img{
+
+    width: 100%;
+    height: 160px;
+    object-position: center;
+    border: 2px solid black;
+}
+
+nav #divBodegas .divProducto .divImg h2{
+
+    width: 110px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 1);
+    color: violet;
+    font-size: 15px;
+}
+
+nav #divBodegas .divProducto .divImg p{
+
+    font-size: 13px;
+    width: 90px;
+    background-color: rgba(0, 0, 0, 1);
+    color: violet;
 }
