@@ -27,6 +27,8 @@
         icons = {
             'cart': '&#xe93a;',
             'purchase': '&#xe93a;',
+            'bin': '&#xe9ac;',
+            'trashcan': '&#xe9ac;',
             'mail5': '&#xea86;',
             'contact5': '&#xea86;',
             'facebook2': '&#xea91;',

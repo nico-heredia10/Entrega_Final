@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'icomoon';
   src:
-    url('fonts/icomoon.ttf?9y7ujm') format('truetype'),
-    url('fonts/icomoon.woff?9y7ujm') format('woff'),
-    url('fonts/icomoon.svg?9y7ujm#icomoon') format('svg');
+    url('fonts/icomoon.ttf?kr0gfu') format('truetype'),
+    url('fonts/icomoon.woff?kr0gfu') format('woff'),
+    url('fonts/icomoon.svg?kr0gfu#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -36,6 +36,9 @@
 
 .icon-cart:before {
   content: "\e93a";
+}
+.icon-bin:before {
+  content: "\e9ac";
 }
 .icon-mail4:before {
   content: "\ea86";

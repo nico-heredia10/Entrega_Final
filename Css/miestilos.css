@@ -21,6 +21,7 @@ body{
     background-size: 200vh;
     background-attachment: fixed;
     overflow: auto;
+    
 }
 
 nav{
@@ -49,7 +50,7 @@ nav div ul li{
     text-align: center;
     background-color: rgba(0, 0, 0, 1);
     position: relative;
-    left: -120px;
+    left: -112px;
     transition: all 3s linear;
     border: 1px solid black;
 }
@@ -193,3 +194,185 @@ nav #divBodegas .divProducto .divImg .agregar:active{
     animation: paraBoton 0.5s linear 0.1s;
 }
 
+main{
+    width: 100%;
+    height: auto;
+
+}
+
+main .linea{
+
+    width: 100%;
+    height: 1vh;
+    background-color: black;
+    border: 1px solid violet;
+    display: none;
+}
+
+main h1{
+    
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: 900;
+    text-align: center;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 1.5);
+}
+
+main section{
+
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+main section div{
+
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+main section div img{
+
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
+
+main section div .nombre{
+
+    text-align: center;
+    color: violet;
+    background-color: rgba(0, 0, 0, 0.9);
+    
+    margin-top: 5px;
+}
+
+main section div .divBotones{
+
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main section div .divBotones button{
+
+    font-size: 20px;
+    font-weight: 700;
+    color: violet;
+    background-color: black ;
+    width: 20px;
+    height: 40px;
+    position: relative;
+    bottom: 150px;
+    margin: 5px;
+}
+
+main section div button:hover{
+
+    cursor: pointer;
+}
+
+main section div button:active{
+
+    animation: paraBoton 0.5s linear 0.1s;
+}
+
+main section div .derecho{
+
+    
+}
+
+h2{
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: auto;
+    text-align: center;
+    color: violet;
+    text-shadow: 3px 3px 8px rgba(228, 10, 213, 0.9);
+    background-color: rgba(0, 0, 0, 0.9) ;
+    font-size: 15px;
+    
+}
+
+footer{
+
+    width: 100%;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: rgba(223, 235, 234, 0.621);
+    border: 1px solid violet;
+}
+
+footer .sectionFooter{
+
+    width: 100%;
+    display: flex;
+    gap: 2px;
+    padding: 2px;
+}
+
+footer .sectionFooter .contacto{
+    width: 60%;
+}
+
+footer .sectionFooter .contacto ol{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+footer .sectionFooter .contacto ol .liParaContacto{
+
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+footer .sectionFooter .contacto ol .liParaContacto p{
+
+    font-size: 15px;
+    font-weight: 700;
+    width: 200px;
+}
+
+footer .sectionFooter .contacto ol .liParaContacto a{
+
+    text-decoration: none;
+}
+
+footer .sectionFooter .contacto .parrafo{
+
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: underline 2px;
+    margin-top: 10px;
+}   
+
+
+
+footer .sectionFooter .otraFrase{
+
+    width: 45%;
+}
+
+footer .sectionFooter .otraFrase p{
+
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
