@@ -176,10 +176,202 @@ function mostradorDeBodegas (){
     })
 }
 
+const cambioDeImg = (productos, num,  index)=>{
+    // console.log(productos);
+    
+    let img = document.querySelectorAll('.imgDelMain');
+    // console.log(img[index]);
+    let nombre = document.querySelectorAll('.nombre');
+    // console.log(nombre[index]);
+    
+    // if(num == -1 || num == 6){
+    //     num = 6;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+        
+    // }else if(num == -2 || num == 5){
+    //     num = 5;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+
+    // }else if(num == -3 || num == 4){
+    //     num = 4;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+    
+    // }else if(num == -4 || num == 3){
+    //     num = 3;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+
+    // }else if(num == -5 || num == 2){
+    //     num = 2;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+
+    // }else if(num == -6 || num == 1){
+    //     num = 1;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+
+    // }else if(num == -7 || num == 0){
+    //     num = 0;
+    //     img[index].src = productos[num].img
+    //     img[index].alt = productos[num].nombre
+    //     nombre[index].innerText = productos[num].nombre
+    //     return num;
+
+    // }else if(num < -6 || num > productos.length - 1){
+
+    //     console.log(num)
+    //     num = 0;
+    //     console.log(num);
+    //     inicializacion(num);
+    // }
+
+    if(num < 0){
+
+        num = productos.length - 1
+
+    }else if(num >= productos.length){
+
+        num = 0
+    }
+
+        img[index].src = productos[num].img
+        img[index].alt = productos[num].nombre
+        nombre[index].innerText = productos[num].nombre
+
+        return num;
+    
+}
+
+const inicializacion =  (n)=>{
+    num = n;
+    cambiarImgDelMain(num);
+}
+
+
+function cambiarImgDelMain (num){
+
+    let productos = JSON.parse(localStorage.getItem('Productos'));
+    // console.log(productos.bodega_Trapiche);
+    
+    let trapiche = productos.bodega_Trapiche.map(producto =>{
+
+        return{
+            nombre: producto.nombre,
+            img: producto.img
+        }
+    })
+
+
+    let catena = productos.bodega_Catena.map(producto =>{
+
+        return{
+            nombre: producto.nombre,
+            img: producto.img
+        }
+    })
+
+    let salentein = productos.bodega_Salentein.map(producto =>{
+
+        return{
+            nombre: producto.nombre,
+            img: producto.img
+        }
+    })
+
+    let zuccari = productos.bodega_Zuccari.map(producto =>{
+
+        return{
+            nombre: producto.nombre,
+            img: producto.img
+        }
+    })
+
+    let botonIzq = document.querySelectorAll('.botonIzq');
+    let botonDer = document.querySelectorAll('.botonDer');
+    
+    num = 0;
+    console.log(num)
+
+    botonIzq.forEach((boton, i) =>{
+        
+        boton.addEventListener('click', (e)=>{
+
+            let divAModificar = e.target.parentElement.parentElement;
+            // console.log(divAModificar.className);
+            // console.log(e.target)
+            let clase = divAModificar.className.split(' ')[0].replace('div', '');
+            console.log(clase)
+
+            if (clase == 'Trapiche'){
+                
+                console.log(num);
+                num =cambioDeImg( trapiche ,num - 1, i);
+            }else if (clase == 'Catena'){
+            
+                num = cambioDeImg( catena ,num - 1, i);
+
+            }else if (clase == 'Salentein'){
+                
+            
+                num = cambioDeImg( salentein ,num - 1, i);
+
+            }else if (clase == 'Zuccari'){
+                
+            
+                num = cambioDeImg( zuccari ,num - 1, i);
+            }
+        })
+    })
 
 
 
-// mostradorDeLosVinos()
+    botonDer.forEach((boton, i) =>{
 
-mostradorDeBodegas()
+        boton.addEventListener('click', (e)=>{
+            
+            let divAModificar = e.target.parentElement.parentElement;
+            let clase = divAModificar.className.split(' ')[0].replace('div', '');
+            console.log(clase)
+
+            if (clase == 'Trapiche'){
+              
+                num = cambioDeImg( trapiche ,num + 1, i);
+            }else if (clase == 'Catena'){
+                
+            
+                num = cambioDeImg( catena ,num + 1, i);
+
+            }else if (clase == 'Salentein'){
+                
+            
+                num = cambioDeImg( salentein ,num + 1, i);
+
+            }else if (clase == 'Zuccari'){
+                
+            
+                num = cambioDeImg( zuccari ,num + 1, i);
+            }
+        })
+    })
+
+}
+
+mostradorDeBodegas();
 productos();
+cambiarImgDelMain();
