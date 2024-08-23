@@ -239,9 +239,10 @@ main section div{
 
 }
 
-main section div img{
+main section div .imgDelMain{
 
     width: 100%;
+    height: 220px;
     border-radius: 5px;
     border: 1px solid black;
 
