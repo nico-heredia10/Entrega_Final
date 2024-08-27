@@ -463,3 +463,45 @@ footer .sectionFooter .otraFrase p{
 
     animation: paraBoton 0.5s linear 0.1s;
 }
+
+/* ------------- Modificacion de carteles ------------ */
+.centered-alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 300px;
+    height: 230px;
+    border-radius: 10px;
+    border: 2px dashed #EE82EE;
+    font-size: 10px;
+}
+
+.modificarTitle{
+    text-align: center;
+    width: 250px;
+    margin: auto;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.botonaAceptar{
+
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: -5px;
+
+}
+
+.inputLabel{
+    font-size: 15px;
+}
+
+.botonCancelar{
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+    margin-top: -5px;
+    background-color: red;
+}

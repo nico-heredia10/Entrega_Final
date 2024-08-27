@@ -384,7 +384,15 @@ const agregarAlCarrito = ()=>{
     agregar.forEach(agreagador =>{
 
         agreagador.addEventListener('click', (e)=>{
-
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Agregado al carrito",
+                showConfirmButton: false,
+                timer: 1500, 
+                width: 100,
+                
+            });
             // console.log(e.target.parentElement.children);
 
             let id = e.target.id;
@@ -398,7 +406,7 @@ const agregarAlCarrito = ()=>{
                 if(el.id === parseInt(id)){
                     
                     let productoExistente = carrito.find(item => item.id === el.id);
-                    console.log(productoExistente);
+                   
                     if (productoExistente) {
                         
                         productoExistente.cantidad += 1;
@@ -425,7 +433,8 @@ const agregarAlCarrito = ()=>{
                     if (productoExistente) {
                     
                         productoExistente.cantidad += 1;
-                        productoExistente.precio += el.precio;  
+                        productoExistente.precio += el.precio;
+                        
                     } else {
                         let id = el.id;
                         let cantidad = 1;
@@ -438,7 +447,7 @@ const agregarAlCarrito = ()=>{
                    
                 }
             
-            })
+            });
 
             salentein.forEach(el => {
                 if(el.id === parseInt(id)){
@@ -497,11 +506,111 @@ const agregarAlCarrito = ()=>{
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    mostradorDeBodegas();
-    productos();
-    cambiarImgDelMain();
-    creandoCarrito();
-    // localStorage.removeItem('carrito');
-    let tr = document.getElementsByTagName('tr');
-    console.log(tr);
+
+    comienzoDeAplicacion();
+    
 });
+
+function comienzoDeAplicacion (){
+
+    if(document.body){
+
+        Swal.fire({
+        
+            title: 'Bienvenido!',
+            inputLabel: 'Ingresa tu edad:',
+            input: 'text',
+            color: '#EE82EE',
+            confirmButtonText: 'Aceptar',
+            customClass: {
+                popup: 'centered-alert',
+                title: 'modificarTitle',
+                confirmButton: 'botonaAceptar',
+                inputLabel: 'inputLabel'
+            }
+        })
+        .then(response =>{
+            // console.log(parseInt(response.value));
+            if(isNaN(parseInt(response.value))){
+                Swal.fire({
+    
+                    icon: 'error',
+                    titleText: 'El dato ingresado no es un NUMERO',
+                    color: '#EE82EE',
+                    confirmButtonText: 'Aceptar',
+                    customClass: {
+                    popup: 'centered-alert',
+                    title: 'modificarTitle',
+                    confirmButton: 'botonaAceptar',
+                    icon: 'icono-cart'
+                    }
+    
+                }).then(resp =>{
+    
+                    if(resp.value || !resp.value){
+    
+                        comienzoDeAplicacion();
+                    }
+                })
+    
+            }else if(parseInt(response.value) < 18){
+    
+                Swal.fire({
+    
+                    title: 'Eres menor de EDAD',
+                    color: '#EE82EE',
+                    imageUrl: 'https://i.gifer.com/1dqt.gif',
+                    imageWidth: '120px',
+                    imageHeight: '90px',
+                    customClass: {
+                        popup: 'centered-alert',
+                        title: 'modificarTitle',
+                        confirmButton: 'botonaAceptar',
+                        icon: 'icono-cart'
+                        }
+                }).then(resp =>{
+                    
+                    if(resp.value || !resp.value){
+    
+                        document.body.style.display = 'none';
+                    }
+                })
+    
+            }else if(parseInt(response.value) >= 18){
+                
+    
+                Swal.fire({
+                    title: '¿Desea seguir con su compra?',
+                    confirmButtonText: 'SI',
+                    showCancelButton: 'true',
+                    cancelButtonText: 'NO',
+                    customClass: {
+                        popup: 'centered-alert',
+                        title: 'modificarTitle',
+                        confirmButton: 'botonaAceptar',
+                        icon: 'icono-cart',
+                        cancelButton: 'botonCancelar'
+                        }
+                }).then(resp =>{
+    
+                    console.log(resp);
+                    if(resp.isConfirmed){
+    
+                        mostradorDeBodegas();
+                        productos();
+                        cambiarImgDelMain();
+                        creandoCarrito();
+                    }else if(resp.isDismissed){
+    
+                        mostradorDeBodegas();
+                        productos();
+                        cambiarImgDelMain();
+                        creandoCarrito();
+                        localStorage.removeItem('carrito');
+                    }
+                })
+            }
+        })
+    }
+
+}
