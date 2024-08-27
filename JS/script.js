@@ -25,6 +25,9 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
     let divAOcultar = document.querySelector('.divProducto');
     let existe = '';
 
+    let linea = document.querySelector('.linea');
+    // console.log(linea)
+
     if(divAOcultar){
         
         existe = divAOcultar.classList.item(1);
@@ -32,18 +35,21 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
         if(existe == nombreBodega){
 
             divDeBodegas.removeChild(divAOcultar);
-
+            linea.style.display = 'none';
         }else{
 
             if(divAOcultar){
 
                 divDeBodegas.removeChild(divAOcultar);
+                linea.style.display = 'none';
             }
+
+            linea.style.display = 'block';
             
             let divProducto = document.createElement('div');
 
             divProducto.setAttribute('class', `divProducto ${nombreBodega}`);
-            console.log(divProducto);
+            // console.log(divProducto);
             arrayBodega.forEach(bode =>{{
         
                 let div = document.createElement('div');
@@ -52,13 +58,14 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
                 div.innerHTML = `<img src='${bode.img}' alt='${bode.nombre}'>
                             <h2>${bode.nombre}</h2>
                             <p>${bode.varietal}</p>
-                            <botton class= 'agregar'>Agregar</botton>`
+                            <botton id='${bode.id}' class= 'agregar'>Agregar</botton>`
         
                 divProducto.appendChild(div);
-        
+                
             }})
         
             divDeBodegas.appendChild(divProducto);
+            agregarAlCarrito()
             
         }
 
@@ -69,11 +76,12 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
             divDeBodegas.removeChild(divAOcultar);
         }
         
+            linea.style.display = 'block';
 
             let divProducto = document.createElement('div');
 
             divProducto.setAttribute('class', `divProducto ${nombreBodega}`);
-            console.log(divProducto);
+            // console.log(divProducto);
             arrayBodega.forEach(bode =>{{
         
                 let div = document.createElement('div');
@@ -82,14 +90,14 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
                 div.innerHTML = `<img src='${bode.img}' alt='${bode.nombre}'>
                             <h2>${bode.nombre}</h2>
                             <p>${bode.varietal}</p>
-                            <botton class= 'agregar'>Agregar</botton>`
+                            <botton id='${bode.id}' class='agregar'>Agregar</botton>`
         
                 divProducto.appendChild(div);
-        
+                
             }})
         
             divDeBodegas.appendChild(divProducto);
-
+            agregarAlCarrito();
             
     }
             
@@ -97,7 +105,7 @@ const creadorDeDiv = (nombreBodega, arrayBodega)=>{
 }
 
 const mostradorDeLosVinos = (vinos)=>{
-    console.log(vinos)
+    // console.log(vinos)
     let productos = JSON.parse(localStorage.getItem('Productos'));
 
     vinos.forEach(vino =>{
@@ -138,7 +146,9 @@ function mostradorDeBodegas (){
     const bodegas = document.getElementById('Bodegas');
     const divDeBodegas = document.getElementById('divBodegas');
 
-    bodegas.addEventListener('click', (e)=>{
+    if(bodegas){
+
+       bodegas.addEventListener('click', (e)=>{
 
         e.preventDefault();
         // console.log(e.target) 
@@ -146,12 +156,13 @@ function mostradorDeBodegas (){
         let existeDiv = document.querySelector('.div1');
         let divDeImg = document.querySelector('.divProducto');
         // console.log(existeDiv);
+        let linea = document.querySelector('.linea');
         
         if(existeDiv){
 
             divDeBodegas.removeChild(existeDiv);
             divDeBodegas.removeChild(divDeImg);
-            
+            linea.style.display = 'none'
         }else{
             let div1 = document.createElement('div');
             div1.setAttribute('class', 'div1');
@@ -173,7 +184,9 @@ function mostradorDeBodegas (){
             mostradorDeLosVinos(arrayVinos);
         }
        
-    })
+        }) 
+    }
+    
 }
 
 const cambioDeImg = (productos, num,  index)=>{
@@ -183,63 +196,6 @@ const cambioDeImg = (productos, num,  index)=>{
     // console.log(img[index]);
     let nombre = document.querySelectorAll('.nombre');
     // console.log(nombre[index]);
-    
-    // if(num == -1 || num == 6){
-    //     num = 6;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-        
-    // }else if(num == -2 || num == 5){
-    //     num = 5;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-
-    // }else if(num == -3 || num == 4){
-    //     num = 4;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-    
-    // }else if(num == -4 || num == 3){
-    //     num = 3;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-
-    // }else if(num == -5 || num == 2){
-    //     num = 2;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-
-    // }else if(num == -6 || num == 1){
-    //     num = 1;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-
-    // }else if(num == -7 || num == 0){
-    //     num = 0;
-    //     img[index].src = productos[num].img
-    //     img[index].alt = productos[num].nombre
-    //     nombre[index].innerText = productos[num].nombre
-    //     return num;
-
-    // }else if(num < -6 || num > productos.length - 1){
-
-    //     console.log(num)
-    //     num = 0;
-    //     console.log(num);
-    //     inicializacion(num);
-    // }
 
     if(num < 0){
 
@@ -258,13 +214,13 @@ const cambioDeImg = (productos, num,  index)=>{
     
 }
 
-const inicializacion =  (n)=>{
-    num = n;
-    cambiarImgDelMain(num);
-}
+// const inicializacion =  (n)=>{
+//     num = n;
+//     cambiarImgDelMain(num);
+// }
 
 
-function cambiarImgDelMain (num){
+function cambiarImgDelMain (){
 
     let productos = JSON.parse(localStorage.getItem('Productos'));
     // console.log(productos.bodega_Trapiche);
@@ -305,8 +261,8 @@ function cambiarImgDelMain (num){
     let botonIzq = document.querySelectorAll('.botonIzq');
     let botonDer = document.querySelectorAll('.botonDer');
     
-    num = 0;
-    console.log(num)
+    let num = 0;
+    // console.log(num)
 
     botonIzq.forEach((boton, i) =>{
         
@@ -316,25 +272,30 @@ function cambiarImgDelMain (num){
             // console.log(divAModificar.className);
             // console.log(e.target)
             let clase = divAModificar.className.split(' ')[0].replace('div', '');
-            console.log(clase)
+            // console.log(clase)
 
             if (clase == 'Trapiche'){
                 
-                console.log(num);
                 num =cambioDeImg( trapiche ,num - 1, i);
+                // console.log(num);
+                
             }else if (clase == 'Catena'){
-            
+                
                 num = cambioDeImg( catena ,num - 1, i);
+                // console.log(num);
 
             }else if (clase == 'Salentein'){
                 
-            
                 num = cambioDeImg( salentein ,num - 1, i);
+                // console.log(num);
+            
+                
 
             }else if (clase == 'Zuccari'){
                 
-            
-                num = cambioDeImg( zuccari ,num - 1, i);
+                num =cambioDeImg( zuccari ,num - 1, i);
+                // console.log(num);
+                
             }
         })
     })
@@ -347,7 +308,7 @@ function cambiarImgDelMain (num){
             
             let divAModificar = e.target.parentElement.parentElement;
             let clase = divAModificar.className.split(' ')[0].replace('div', '');
-            console.log(clase)
+            // console.log(clase)
 
             if (clase == 'Trapiche'){
               
@@ -372,6 +333,175 @@ function cambiarImgDelMain (num){
 
 }
 
-mostradorDeBodegas();
-productos();
-cambiarImgDelMain();
+function creandoCarrito() {
+
+    let productosDelCarrito = JSON.parse(localStorage.getItem('carrito'));
+    console.log(productosDelCarrito);
+    const tablaAAgregar = document.querySelector('.productosAgregados');
+    console.log(tablaAAgregar);
+    let num = 0;
+
+    productosDelCarrito.forEach(producto =>{
+
+        fila = document.createElement('tr');
+        fila.setAttribute('class', num + 1);
+
+        fila.innerHTML = `<td>${num += 1}</td>
+                        <td>${producto.nombre}</td>
+                        <td class='cantidad'><span class="icon icon-bin borrar"></span><p>${producto.cantidad}</p></td>
+                        <td class='precio'>${producto.precio}</td>`;
+    
+        tablaAAgregar.appendChild(fila);
+    })
+             
+}
+
+
+const agregarAlCarrito = ()=>{
+
+    let agregar = document.querySelectorAll('.agregar');
+    console.log(agregar);
+    let productos = JSON.parse(localStorage.getItem('Productos'));
+    console.log(productos)
+    
+    let trapiche = productos.bodega_Trapiche;
+    let catena = productos.bodega_Catena;
+    let salentein = productos.bodega_Salentein;
+    let zuccari = productos.bodega_Zuccari;
+
+    class Producto{
+
+        constructor(id, nombre, precio, cantidad){
+            this.id = id;
+            this.nombre = nombre,
+            this.precio = precio,
+            this.cantidad = cantidad
+        }
+    }
+
+    let producto;
+
+    agregar.forEach(agreagador =>{
+
+        agreagador.addEventListener('click', (e)=>{
+
+            // console.log(e.target.parentElement.children);
+
+            let id = e.target.id;
+            console.log(id)
+
+            let carritoGuardado = localStorage.getItem('carrito');
+            let carrito = carritoGuardado ? JSON.parse(carritoGuardado) : [];
+            
+            trapiche.forEach(el => {
+            
+                if(el.id === parseInt(id)){
+                    
+                    let productoExistente = carrito.find(item => item.id === el.id);
+                    console.log(productoExistente);
+                    if (productoExistente) {
+                        
+                        productoExistente.cantidad += 1;
+                        productoExistente.precio += el.precio;  
+                        
+                    } else {
+                        let id = el.id;
+                        let cantidad = 1;
+                        let nombre = el.nombre;
+                        let precio = el.precio;
+                        producto = new Producto(id, nombre, precio, cantidad);
+                        carrito.push(producto);
+                        
+                    }
+                }
+            
+            });
+
+            catena.forEach(el => {
+                if(el.id === parseInt(id)){
+
+                    let productoExistente = carrito.find(item => item.id === el.id);
+
+                    if (productoExistente) {
+                    
+                        productoExistente.cantidad += 1;
+                        productoExistente.precio += el.precio;  
+                    } else {
+                        let id = el.id;
+                        let cantidad = 1;
+                        let nombre = el.nombre;
+                        let precio = el.precio;
+                        producto = new Producto(id, nombre, precio, cantidad);
+                        carrito.push(producto);
+                   
+                    }
+                   
+                }
+            
+            })
+
+            salentein.forEach(el => {
+                if(el.id === parseInt(id)){
+
+                    let productoExistente = carrito.find(item => item.id === el.id);
+
+                    if (productoExistente) {
+                    
+                        productoExistente.cantidad += 1;
+                        productoExistente.precio += el.precio;  
+                    } else {
+                        let id = el.id;
+                        let cantidad = 1;
+                        let nombre = el.nombre;
+                        let precio = el.precio;
+                        producto = new Producto(id, nombre, precio, cantidad);
+                        carrito.push(producto);
+                   
+                    }
+                   
+                }
+            
+            })
+
+            zuccari.forEach(el => {
+                if(el.id === parseInt(id)){
+
+                    let productoExistente = carrito.find(item => item.id === el.id);
+
+                    if (productoExistente) {
+                    
+                        productoExistente.cantidad += 1;
+                        productoExistente.precio += el.precio;  
+                    } else {
+                        let id = el.id;
+                        let cantidad = 1;
+                        let nombre = el.nombre;
+                        let precio = el.precio;
+                        producto = new Producto(id, nombre, precio, cantidad);
+                        carrito.push(producto);
+                   
+                    }
+                   
+                }
+            
+            })
+
+            localStorage.setItem('carrito', JSON.stringify(carrito));  
+        })
+        
+        
+    })
+    
+    
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    mostradorDeBodegas();
+    productos();
+    cambiarImgDelMain();
+    creandoCarrito();
+    // localStorage.removeItem('carrito');
+    let tr = document.getElementsByTagName('tr');
+    console.log(tr);
+});

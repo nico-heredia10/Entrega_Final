@@ -377,3 +377,89 @@ footer .sectionFooter .otraFrase p{
     font-weight: 700;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
+
+
+/* ------------ Css De Carrito ------------- */
+
+#mainCarrito{
+
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    gap: 30px;
+}
+
+#mainCarrito table{
+    width: 95%;
+    height: auto;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.8);
+
+}
+
+@keyframes Cambio{
+
+    from{
+        color: rgb(164, 90, 159);
+    }
+
+    to{
+        color: rgb(247, 4, 231);
+    }
+}
+
+#mainCarrito table thead th{
+
+    border: 2px solid black;
+    animation: Cambio 2s ease-in 0.5s infinite alternate;
+    
+}
+
+#mainCarrito table thead th:nth-of-type(1){
+
+    width: 25px;
+    
+}
+
+#mainCarrito table thead th:nth-of-type(2){
+
+    width: 220px;
+    
+}
+
+#mainCarrito table tbody td{
+
+    border: 2px solid black;
+    color: violet;
+}
+
+#mainCarrito table tbody td p{
+    margin-left: 5px;
+}
+
+#mainCarrito table tbody .cantidad{
+
+    display: flex;
+    gap: 15px;
+    border: 1px solid black;
+}
+
+#mainCarrito table tbody .cantidad span{
+
+    margin-left: 5px;
+}
+
+#mainCarrito table tbody .cantidad span:hover{
+
+    cursor: pointer;
+    color: red;
+}
+
+#mainCarrito table tbody .cantidad span:active{
+
+    animation: paraBoton 0.5s linear 0.1s;
+}
