@@ -14,6 +14,8 @@ const productos = async ()=>{
     
 }
 
+// ----------------- Creadores de, links y img ------------
+
 const creadorDeDiv = (nombreBodega, arrayBodega)=>{
 
     nombreBodega = nombreBodega.replace(/\s+/g,'');
@@ -189,6 +191,7 @@ function mostradorDeBodegas (){
     
 }
 
+// ------------------ Cambio de Img en el Main ----------------
 const cambioDeImg = (productos, num,  index)=>{
     // console.log(productos);
     
@@ -332,6 +335,9 @@ function cambiarImgDelMain (){
     })
 
 }
+
+// ---------------- Funciones creadoras del Carrito --------------
+
 
 function creandoCarrito() {
 
@@ -507,6 +513,7 @@ const agregarAlCarrito = ()=>{
     
 }
 
+// ------------- Funcion para Eliminar Productos del Carrito -----
 
 const removerCarrito = ()=>{
 
@@ -536,7 +543,7 @@ const removerCarrito = ()=>{
             }).then(resp=>{
 
                 if(resp.isConfirmed){
-                    console.log(e.target.parentElement.parentElement.children[1].innerText);
+                    // console.log(e.target.parentElement.parentElement.children[1].innerText);
 
                     let nombre = e.target.parentElement.parentElement.children[1].innerText;
 
@@ -552,6 +559,145 @@ const removerCarrito = ()=>{
         })
     })
 }
+
+const terminarCompra = ()=>{
+
+    const aceptarCompra = document.querySelector('.aceptar');
+    let productosDelCarrito = JSON.parse(localStorage.getItem('carrito'));
+    
+    aceptarCompra.addEventListener('click', (e)=>{
+
+        let totalCantidad = productosDelCarrito.reduce((acc, el) => acc + el.cantidad, 0)
+        console.log(totalCantidad);
+
+        let totalPrecio = productosDelCarrito.reduce((acc, el) => acc + el.precio, 0);
+        console.log(totalPrecio);
+
+        if(!productosDelCarrito){
+            console('gola');
+            Swal.fire({
+                title: 'No tiene productos en el carrito',
+                customClass: {
+                    popup: 'centered-alert',
+                    title: 'modificarTitle',
+                }
+            })
+
+        }else{
+
+            Swal.fire({
+
+                titleText: `Cantidad total de botellas: ${totalCantidad} \n Precio Total: ${totalPrecio}
+                \n Desea finalizar compra?`,
+                confirmButtonText: 'Si',
+                showCancelButton: 'true',
+                cancelButtonText: 'No',
+                customClass: {
+                    popup: 'centered-alert finaliza',
+                    title: 'titleFinaliza',
+                    confirmButton: 'botonFinalizar',
+                    cancelButton: 'botonFinalizar'
+                }
+                
+            }).then(response =>{
+
+                if(response.isConfirmed){
+
+                    Swal.fire({
+
+                        title: '¡Genial!',
+                        html: `
+                        <label for="input1" class="inputLabel">Nombre:</label>
+                        <input id="input1" class="swal2-input">
+                        <label for="input2" class="inputLabel">Apellido:</label>
+                        <input id="input2" class="swal2-input">
+                        `,
+                        confirmButtonText: 'Enviar',
+                        customClass: {
+                            popup: 'centered-alert Fin',
+                            title: 'titleFinaliza',
+                            inputLabel: 'inputLabel',
+                            input: 'InputFinal'
+                        },
+
+                        preConfirm: () =>{
+
+                            const input1 = document.getElementById('input1').value.trim();
+                            const input2 = document.getElementById('input2').value.trim();
+
+                            const regex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+
+                            if(!input1 || !input2){
+                                Swal.showValidationMessage('Por favor, completa ambos campos!');
+
+                                return false;
+                            }
+
+                            if (!regex.test(input1) || !regex.test(input2)){
+
+                                Swal.showValidationMessage('Solo se permiten letras en ambos campos');
+                            }
+
+                            return{ input1, input2}
+                            
+                        }
+
+                    }).then(ok =>{
+
+                        if(ok.isConfirmed){
+
+                            Swal.fire({
+
+                                title: `Gracias ${input1.value} ${input2.value} por su compra. En la brevedad nos comunicaremos con usted. Abrazo!`,
+                                timer: 5000,
+                                showConfirmButton: false,
+                                customClass: {
+                                    popup: 'centered-alert Fin',
+                                    title: 'titleFinaliza',
+                                    
+                                },
+                            })
+                        }
+                    })
+
+                    descontarProducto(productosDelCarrito);
+                }
+            })
+        }
+    })
+}
+
+function descontarProducto (productos){
+
+    console.log(productos);
+    
+    let productosExistentes = JSON.parse(localStorage.getItem('Productos'));
+
+    for (let categoria in productosExistentes){
+
+        if(Array.isArray(productosExistentes[categoria])){
+            console.log(productosExistentes[categoria][0].stock);
+            productosExistentes[categoria].map(elemento =>{
+
+                let nombre = elemento.nombre.replace(/\s+/g, '');
+                let nombreAComparar = productos.nombre.replace(/\s+/g, '');
+                
+                if(nombre === nombreAComparar){
+                    console.log('hola puto');
+                    return elemento.stock -= productos.cantidad;
+                }
+                
+            })
+        }
+    }
+
+    console.log(productosExistentes.bodega_Trapiche[0].stock);
+    localStorage.setItem('Productos', JSON.stringify(productosExistentes));
+    localStorage.removeItem('carrito')
+
+}
+
+// --------- Inicio de Aplicaion ----------------
 
 function comienzoDeAplicacion (){
 
@@ -625,30 +771,48 @@ function comienzoDeAplicacion (){
         }else if(parseInt(response.value) >= 18){
             
             sessionStorage.setItem('edadConfirmada', true);
-            Swal.fire({
-                title: '¿Desea seguir con su compra?',
-                confirmButtonText: 'SI',
-                showCancelButton: 'true',
-                cancelButtonText: 'NO',
-                customClass: {
-                    popup: 'centered-alert',
-                    title: 'modificarTitle',
-                    confirmButton: 'botonaAceptar',
-                    icon: 'icono-cart',
-                    cancelButton: 'botonCancelar'
+            let existeCarrito = JSON.parse(localStorage.getItem('carrito'));
+            console.log(existeCarrito);
+
+            if(existeCarrito.length > 0){
+
+                Swal.fire({
+                    title: 'Tienes un carrito guardado \n ¿Desea seguir con su compra?',
+                    confirmButtonText: 'SI',
+                    showCancelButton: 'true',
+                    cancelButtonText: 'NO',
+                    customClass: {
+                        popup: 'centered-alert',
+                        title: 'modificarTitle',
+                        confirmButton: 'botonaAceptar',
+                        icon: 'icono-cart',
+                        cancelButton: 'botonCancelar'
+                        }
+                }).then(resp =>{
+    
+                    console.log(resp);
+                    if(resp.isConfirmed){
+    
+                        iniciarPagina();
+                    }else if(resp.isDismissed){
+                        
+                        localStorage.removeItem('carrito');
+                        iniciarPagina();
                     }
-            }).then(resp =>{
+                })
 
-                console.log(resp);
-                if(resp.isConfirmed){
+            }else{
 
-                    iniciarPagina();
-                }else if(resp.isDismissed){
-
-                    iniciarPagina();
-                    localStorage.removeItem('carrito');
-                }
-            })
+                Swal.fire({
+                    title: 'Usted sea ¡Bienvenido!',
+                    showConfirmButton: 'false',
+                    customClass: {
+                        popup: 'centered-alert',
+                        title: 'modificarTitle',
+                    }
+                })
+            }
+            
         }
     })
 }
@@ -664,6 +828,7 @@ const iniciarPagina = ()=>{
     cambiarImgDelMain();
     creandoCarrito();
     removerCarrito();
+    terminarCompra();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

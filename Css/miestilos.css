@@ -543,3 +543,32 @@ footer .sectionFooter .otraFrase p{
     font-size: 11px;
     text-align: center;
 }
+
+.finaliza{
+
+    width: 330px;
+
+}
+
+.titleFinaliza{
+
+    font-size: 17px;
+    color: #EE82EE;
+    width: 100%;
+}
+
+.botonFinalizar{
+
+    width: 60px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.Fin{
+
+    height: 300px;
+}
+.inputLabel{
+
+    color: #EE82EE;
+}
