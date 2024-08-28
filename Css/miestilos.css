@@ -464,6 +464,26 @@ footer .sectionFooter .otraFrase p{
     animation: paraBoton 0.5s linear 0.1s;
 }
 
+.aceptar{
+
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: 900;
+    background-color: black;
+    color: violet;
+    margin-top: -50px;
+}
+
+.aceptar:hover{
+
+    cursor: pointer;
+}
+
+.aceptar:active{
+
+    animation: paraBoton 0.5s linear 0.1s;
+}
 /* ------------- Modificacion de carteles ------------ */
 .centered-alert{
     display: flex;
@@ -504,4 +524,22 @@ footer .sectionFooter .otraFrase p{
     font-size: 12px;
     margin-top: -5px;
     background-color: red;
+}
+
+.popupAgregar{
+
+    width: 100px;
+    height: 100px;
+    font-size: 6px;
+    background-color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;align-items: center;
+
+}
+
+.titleAgregar{
+
+    font-size: 11px;
+    text-align: center;
 }

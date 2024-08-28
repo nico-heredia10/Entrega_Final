@@ -347,7 +347,7 @@ function creandoCarrito() {
         fila.setAttribute('class', num + 1);
 
         fila.innerHTML = `<td>${num += 1}</td>
-                        <td>${producto.nombre}</td>
+                        <td class='nombreCarrito'>${producto.nombre}</td>
                         <td class='cantidad'><span class="icon icon-bin borrar"></span><p>${producto.cantidad}</p></td>
                         <td class='precio'>${producto.precio}</td>`;
     
@@ -390,7 +390,10 @@ const agregarAlCarrito = ()=>{
                 title: "Agregado al carrito",
                 showConfirmButton: false,
                 timer: 1500, 
-                width: 100,
+                customClass: {
+                    popup: 'popupAgregar',
+                    title: 'titleAgregar'
+                }
                 
             });
             // console.log(e.target.parentElement.children);
@@ -505,112 +508,166 @@ const agregarAlCarrito = ()=>{
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+const removerCarrito = ()=>{
 
-    comienzoDeAplicacion();
-    
-});
+    let borrar = document.querySelectorAll('.borrar');
+
+    let carritoGuardado = JSON.parse(localStorage.getItem('carrito'));
+
+    borrar.forEach(remov =>{
+
+        remov.addEventListener('click', (e)=>{
+
+            Swal.fire({
+
+                titleText: '¿Seguro deseas eliminarlo del carrito?',
+                showConfirmButton: true,
+                confirmButtonText: 'Si',
+                showCancelButton: true,
+                cancelButtonText: 'No',
+                customClass: {
+                    popup: 'centered-alert',
+                    title: 'modificarTitle',
+                    confirmButton: 'botonaAceptar',
+                    inputLabel: 'inputLabel',
+                    cancelButton: 'botonCancelar'
+                }
+
+            }).then(resp=>{
+
+                if(resp.isConfirmed){
+                    console.log(e.target.parentElement.parentElement.children[1].innerText);
+
+                    let nombre = e.target.parentElement.parentElement.children[1].innerText;
+
+                    let carritoActualizado = carritoGuardado.filter(item => item.nombre != nombre);
+
+                    localStorage.setItem('carrito', JSON.stringify(carritoActualizado));
+
+                    e.target.parentElement.parentElement.remove();
+
+                }
+            })
+            
+        })
+    })
+}
 
 function comienzoDeAplicacion (){
 
-    if(document.body){
+    if(sessionStorage.getItem('edadConfirmada') === 'true'){
 
-        Swal.fire({
+        iniciarPagina();
+        return;
+    }
+
+    Swal.fire({
         
-            title: 'Bienvenido!',
-            inputLabel: 'Ingresa tu edad:',
-            input: 'text',
-            color: '#EE82EE',
-            confirmButtonText: 'Aceptar',
-            customClass: {
+        title: 'Bienvenido!',
+        inputLabel: 'Ingresa tu edad:',
+        input: 'text',
+        color: '#EE82EE',
+        confirmButtonText: 'Aceptar',
+        customClass: {
+            popup: 'centered-alert',
+            title: 'modificarTitle',
+            confirmButton: 'botonaAceptar',
+            inputLabel: 'inputLabel'
+        }
+    })
+    .then(response =>{
+        // console.log(parseInt(response.value));
+        if(isNaN(parseInt(response.value))){
+            Swal.fire({
+
+                icon: 'error',
+                titleText: 'El dato ingresado no es un NUMERO',
+                color: '#EE82EE',
+                confirmButtonText: 'Aceptar',
+                customClass: {
                 popup: 'centered-alert',
                 title: 'modificarTitle',
                 confirmButton: 'botonaAceptar',
-                inputLabel: 'inputLabel'
-            }
-        })
-        .then(response =>{
-            // console.log(parseInt(response.value));
-            if(isNaN(parseInt(response.value))){
-                Swal.fire({
-    
-                    icon: 'error',
-                    titleText: 'El dato ingresado no es un NUMERO',
-                    color: '#EE82EE',
-                    confirmButtonText: 'Aceptar',
-                    customClass: {
+                icon: 'icono-cart'
+                }
+
+            }).then(resp =>{
+
+                if(resp.value || !resp.value){
+
+                    comienzoDeAplicacion();
+                }
+            })
+
+        }else if(parseInt(response.value) < 18){
+
+            Swal.fire({
+
+                title: 'Eres menor de EDAD',
+                color: '#EE82EE',
+                imageUrl: 'https://i.gifer.com/1dqt.gif',
+                imageWidth: '120px',
+                imageHeight: '90px',
+                customClass: {
                     popup: 'centered-alert',
                     title: 'modificarTitle',
                     confirmButton: 'botonaAceptar',
                     icon: 'icono-cart'
                     }
-    
-                }).then(resp =>{
-    
-                    if(resp.value || !resp.value){
-    
-                        comienzoDeAplicacion();
-                    }
-                })
-    
-            }else if(parseInt(response.value) < 18){
-    
-                Swal.fire({
-    
-                    title: 'Eres menor de EDAD',
-                    color: '#EE82EE',
-                    imageUrl: 'https://i.gifer.com/1dqt.gif',
-                    imageWidth: '120px',
-                    imageHeight: '90px',
-                    customClass: {
-                        popup: 'centered-alert',
-                        title: 'modificarTitle',
-                        confirmButton: 'botonaAceptar',
-                        icon: 'icono-cart'
-                        }
-                }).then(resp =>{
-                    
-                    if(resp.value || !resp.value){
-    
-                        document.body.style.display = 'none';
-                    }
-                })
-    
-            }else if(parseInt(response.value) >= 18){
+            }).then(resp =>{
                 
-    
-                Swal.fire({
-                    title: '¿Desea seguir con su compra?',
-                    confirmButtonText: 'SI',
-                    showCancelButton: 'true',
-                    cancelButtonText: 'NO',
-                    customClass: {
-                        popup: 'centered-alert',
-                        title: 'modificarTitle',
-                        confirmButton: 'botonaAceptar',
-                        icon: 'icono-cart',
-                        cancelButton: 'botonCancelar'
-                        }
-                }).then(resp =>{
-    
-                    console.log(resp);
-                    if(resp.isConfirmed){
-    
-                        mostradorDeBodegas();
-                        productos();
-                        cambiarImgDelMain();
-                        creandoCarrito();
-                    }else if(resp.isDismissed){
-    
-                        mostradorDeBodegas();
-                        productos();
-                        cambiarImgDelMain();
-                        creandoCarrito();
-                        localStorage.removeItem('carrito');
-                    }
-                })
-            }
-        })
-    }
+                if(resp.value || !resp.value){
 
+                    document.body.style.display = 'none';
+                }
+            })
+
+        }else if(parseInt(response.value) >= 18){
+            
+            sessionStorage.setItem('edadConfirmada', true);
+            Swal.fire({
+                title: '¿Desea seguir con su compra?',
+                confirmButtonText: 'SI',
+                showCancelButton: 'true',
+                cancelButtonText: 'NO',
+                customClass: {
+                    popup: 'centered-alert',
+                    title: 'modificarTitle',
+                    confirmButton: 'botonaAceptar',
+                    icon: 'icono-cart',
+                    cancelButton: 'botonCancelar'
+                    }
+            }).then(resp =>{
+
+                console.log(resp);
+                if(resp.isConfirmed){
+
+                    iniciarPagina();
+                }else if(resp.isDismissed){
+
+                    iniciarPagina();
+                    localStorage.removeItem('carrito');
+                }
+            })
+        }
+    })
 }
+    
+
+        
+
+
+const iniciarPagina = ()=>{
+
+    mostradorDeBodegas();
+    productos();
+    cambiarImgDelMain();
+    creandoCarrito();
+    removerCarrito();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    comienzoDeAplicacion();
+    
+});
