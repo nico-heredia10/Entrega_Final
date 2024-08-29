@@ -393,7 +393,7 @@ const agregarAlCarrito = ()=>{
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Agregado al carrito",
+                title: "Añadido al carrito",
                 showConfirmButton: false,
                 timer: 1500, 
                 customClass: {
@@ -414,21 +414,38 @@ const agregarAlCarrito = ()=>{
             
                 if(el.id === parseInt(id)){
                     
-                    let productoExistente = carrito.find(item => item.id === el.id);
+                    if(el.stock <= 0){
+
+                        Swal.fire({
+
+                            title: 'No hay stock del producto, sepa disculparnos',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'notiAgregar',
+                                title: 'sinStock',
+                            }
+                        })
+
+                    }else {
+                    
+                        let productoExistente = carrito.find(item => item.id === el.id);
                    
-                    if (productoExistente) {
+                        if (productoExistente) {
                         
-                        productoExistente.cantidad += 1;
-                        productoExistente.precio += el.precio;  
+                            productoExistente.cantidad += 1;
+                            productoExistente.precio += el.precio;  
                         
-                    } else {
-                        let id = el.id;
-                        let cantidad = 1;
-                        let nombre = el.nombre;
-                        let precio = el.precio;
-                        producto = new Producto(id, nombre, precio, cantidad);
-                        carrito.push(producto);
+                        } else {
+                            let id = el.id;
+                            let cantidad = 1;
+                            let nombre = el.nombre;
+                            let precio = el.precio;
+                            producto = new Producto(id, nombre, precio, cantidad);
+                            carrito.push(producto);
                         
+                        }
+
                     }
                 }
             
@@ -437,22 +454,39 @@ const agregarAlCarrito = ()=>{
             catena.forEach(el => {
                 if(el.id === parseInt(id)){
 
-                    let productoExistente = carrito.find(item => item.id === el.id);
+                    if(el.stock <= 0){
 
-                    if (productoExistente) {
+                        Swal.fire({
+
+                            title: 'No hay stock del producto, sepa disculparnos',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'notiAgregar',
+                                title: 'sinStock',
+                            }
+                        })
+
+                    }else{
+
+                        let productoExistente = carrito.find(item => item.id === el.id);
+
+                        if (productoExistente) {
                     
-                        productoExistente.cantidad += 1;
-                        productoExistente.precio += el.precio;
+                            productoExistente.cantidad += 1;
+                            productoExistente.precio += el.precio;
                         
-                    } else {
-                        let id = el.id;
-                        let cantidad = 1;
-                        let nombre = el.nombre;
-                        let precio = el.precio;
-                        producto = new Producto(id, nombre, precio, cantidad);
-                        carrito.push(producto);
+                        } else {
+                            let id = el.id;
+                            let cantidad = 1;
+                            let nombre = el.nombre;
+                            let precio = el.precio;
+                            producto = new Producto(id, nombre, precio, cantidad);
+                            carrito.push(producto);
                    
-                    }
+                        }
+                    }    
+                    
                    
                 }
             
@@ -461,7 +495,22 @@ const agregarAlCarrito = ()=>{
             salentein.forEach(el => {
                 if(el.id === parseInt(id)){
 
-                    let productoExistente = carrito.find(item => item.id === el.id);
+                    if(el.stock <= 0){
+
+                        Swal.fire({
+
+                            title: 'No hay stock del producto, sepa disculparnos',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            customClass: {
+                                popup: 'notiAgregar',
+                                title: 'sinStock',
+                            }
+                        })
+
+                    }else{
+
+                        let productoExistente = carrito.find(item => item.id === el.id);
 
                     if (productoExistente) {
                     
@@ -476,6 +525,8 @@ const agregarAlCarrito = ()=>{
                         carrito.push(producto);
                    
                     }
+                    }
+                    
                    
                 }
             
@@ -484,7 +535,22 @@ const agregarAlCarrito = ()=>{
             zuccari.forEach(el => {
                 if(el.id === parseInt(id)){
 
-                    let productoExistente = carrito.find(item => item.id === el.id);
+                    if(el.stock <= 0){
+
+                        Swal.fire({
+
+                            title: 'No hay stock del producto, sepa disculparnos',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            position: 'top-end',
+                            customClass: {
+                                popup: 'centered-alert notiAgregar',
+                                title: 'sinStock',
+                            }
+                        })
+
+                    }else{
+                        let productoExistente = carrito.find(item => item.id === el.id);
 
                     if (productoExistente) {
                     
@@ -499,6 +565,8 @@ const agregarAlCarrito = ()=>{
                         carrito.push(producto);
                    
                     }
+
+                }
                    
                 }
             

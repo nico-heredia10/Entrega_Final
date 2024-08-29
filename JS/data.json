@@ -13,7 +13,7 @@
             "nombre":"Gran Medalla",
             "varietal": "Malbec",
             "precio": 5500,
-            "stock": 20,
+            "stock": 0,
             "id": 2,
             "img": "./Img/Img-Trapiche/Gran Medalla.png"
         },
@@ -116,7 +116,7 @@
             "nombre":"Nicasi Vineyard",
             "varietal": "Malbec",
             "precio": 43000,
-            "stock": 9,
+            "stock": 0,
             "id": 13,
             "img": "./Img/Img-Catena/Nicasi Vineyard - Malbec.jpg"
         },

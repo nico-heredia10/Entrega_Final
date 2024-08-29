@@ -17,7 +17,7 @@ body{
     background-image: url(../Img/Viñedo.jpg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: filled;
     background-size: 200vh;
     background-attachment: fixed;
     overflow: auto;
@@ -46,7 +46,7 @@ nav div ul li{
     list-style: none;
     width: 130px;
     height: 20px;
-    line-height: 15px;
+    line-height: 20px;
     text-align: center;
     background-color: rgba(0, 0, 0, 1);
     position: relative;
@@ -87,7 +87,6 @@ nav #divBodegas .div1{
     flex-wrap: wrap;
     gap: 5px;
     padding: 5px;
-    
     text-align: center;
 
 }
@@ -535,6 +534,7 @@ footer .sectionFooter .otraFrase p{
     text-align: center;
     display: flex;
     justify-content: center;align-items: center;
+    color: #EE82EE;
 
 }
 
@@ -571,4 +571,237 @@ footer .sectionFooter .otraFrase p{
 .inputLabel{
 
     color: #EE82EE;
+}
+
+.notiAgregar{
+
+    width: 150px;
+    height: 100px;
+    background-color: black;
+    /* position: relative;
+    left: 100px */
+    color: #EE82EE;
+    text-align: center;
+}
+
+.sinStock{
+
+    font-size: 15px;
+    font-weight: 900;
+    margin: auto;
+    margin-top: -5px;
+}
+
+
+@media screen and ( min-width: 501px) and (max-width: 900px) {
+    
+
+    nav #divBodegas .divProducto .divImg{
+
+        width: 200px;
+        height: 250px;
+       
+    }
+
+    nav #divBodegas .divProducto .divImg img{
+
+        width: 100%;
+        height: 200px;
+        
+    }
+
+    nav #divBodegas .divProducto .divImg h2{
+
+        width: 120px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 1);
+        color: violet;
+        font-size: 20px;
+    }
+    
+    nav #divBodegas .divProducto .divImg p{
+    
+        font-size: 16px;
+        width: 90px;
+        background-color: rgba(0, 0, 0, 1);
+        color: violet;
+    }    
+
+    nav #divBodegas .divProducto .divImg .agregar{
+
+        font-size: 12px;
+        position: relative;
+        left: 60px;
+        bottom: 130px;
+    }
+
+    main section div{
+
+        width: 40%;
+    }
+    
+    main section div .imgDelMain{
+    
+        width: 100%;
+        height: 250px;
+    
+    }
+    
+    main section div .divBotones button{
+    
+        bottom: 170px;
+        margin: 5px;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    body{
+        background-color: black;
+        background-size: auto;
+    }
+    
+    nav #divBodegas .div1 p{
+
+        width: 160px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+
+    }
+
+    nav #divBodegas .divProducto .divImg{
+
+        width: 200px;
+        height: 250px;
+       
+    }
+
+    nav #divBodegas .divProducto .divImg img{
+
+        width: 100%;
+        height: 200px;
+        
+    }
+
+    nav #divBodegas .divProducto .divImg h2{
+
+        width: 160px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 20px;
+    }
+    
+    nav #divBodegas .divProducto .divImg p{
+        font-size: 18px;
+        width: 100px;
+        height: 25px;
+        line-height: 25px;
+
+    }    
+
+    nav #divBodegas .divProducto .divImg .agregar{
+
+        font-size: 13px;
+        position: relative;
+        left: 70px;
+        bottom: 150px;
+    }
+
+    main section{
+
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    main section .divTrapiche{
+
+        grid-column: 1 / 2;
+        grid-row: 1/2;
+        width: 50%;
+        height: auto;
+        margin: auto;
+    }
+
+    main section .divCatena{
+
+        grid-column: 2 / 2;
+        grid-row: 1/2;
+        width: 50%;
+        height: auto;
+        margin: auto;
+    }
+
+    main section .divSalentein{
+
+        grid-column: 1 / 2;
+        grid-row: 2/2;
+        width: 50%;
+        height: auto;
+        margin: auto;
+    }
+
+    main section .divZuccari{
+
+        grid-column: 2 / 2;
+        grid-row: 2/2;
+        width: 50%;
+        height: auto;
+        margin: auto;
+    }
+    
+    main section div{
+    
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    
+    }
+    
+    main section div .imgDelMain{
+    
+        width: 100%;
+        height: 220px;
+        border-radius: 5px;
+        border: 1px solid black;
+    
+    }
+    
+    main section div .nombre{
+    
+        text-align: center;
+        color: violet;
+        background-color: rgba(0, 0, 0, 0.9);
+        
+        margin-top: 5px;
+    }
+    
+    main section div .divBotones{
+    
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    main section div .divBotones button{
+    
+        font-size: 20px;
+        font-weight: 700;
+        color: violet;
+        background-color: black ;
+        width: 20px;
+        height: 40px;
+        position: relative;
+        bottom: 150px;
+        margin: 5px;
+    }
 }
