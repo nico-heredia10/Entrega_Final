@@ -355,7 +355,7 @@ function creandoCarrito() {
         fila.innerHTML = `<td>${num += 1}</td>
                         <td class='nombreCarrito'>${producto.nombre}</td>
                         <td class='cantidad'><span class="icon icon-bin borrar"></span><p>${producto.cantidad}</p></td>
-                        <td class='precio'>${producto.precio}</td>`;
+                        <td class='precio'> $${producto.precio}</td>`;
     
         tablaAAgregar.appendChild(fila);
     })
@@ -642,7 +642,7 @@ const terminarCompra = ()=>{
         console.log(totalPrecio);
 
         if(!productosDelCarrito){
-            console('gola');
+            
             Swal.fire({
                 title: 'No tiene productos en el carrito',
                 customClass: {
@@ -655,7 +655,7 @@ const terminarCompra = ()=>{
 
             Swal.fire({
 
-                titleText: `Cantidad total de botellas: ${totalCantidad} \n Precio Total: ${totalPrecio}
+                titleText: `Cantidad total de botellas: ${totalCantidad} \n Precio Total: $${totalPrecio}
                 \n Desea finalizar compra?`,
                 confirmButtonText: 'Si',
                 showCancelButton: 'true',
